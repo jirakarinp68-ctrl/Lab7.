@@ -1,11 +1,7 @@
-package com.example.lab4;
+package com.example.lab4.Model;
 
 public class UserName extends User {
     public String Address;
-
-    public UserName(){
-    }
-
     public String getAddress() {
         return Address;
     }

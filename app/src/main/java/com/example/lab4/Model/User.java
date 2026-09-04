@@ -1,12 +1,8 @@
-package com.example.lab4;
+package com.example.lab4.Model;
 
 public class User {
     public String password,id;
-    public int data;
     public String UserName;
-
-    void method(){
-    }
     public String getPassword (){
         return password;
     }
@@ -28,15 +24,12 @@ public class User {
     public void login() {
         System.out.println("Login");
     }
-
     public void logout() {
         System.out.println("Logout");
     }
-
     public void createNote() {
         System.out.println("Create Note");
     }
-
     public void deleteNote() {
         System.out.println("Delete Note");
     }

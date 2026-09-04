@@ -1,12 +1,25 @@
-package com.example.lab4;
+package com.example.lab4.Model;
 
-public class TextNote extends Note{
+import java.util.Date;
+
+public class TextNote extends Note {
     public String content;
+
+    public TextNote(String strOftitle, String strOfcontent, Date strOfdate) {
+        super();
+        setTitle(strOftitle);
+        setContent(strOfcontent);
+        setCreatedData(strOfdate);
+    }
+
     public void setContent(String content) {
         this.content = content;
     }
     public String getContent(){
         return content;
+    }
+    public void setCreatedDate(Date createdDate) {
+        this.createdData = createdDate;
     }
     //method
     public String getSummary() {
@@ -16,7 +29,4 @@ public class TextNote extends Note{
                 + "\nCreated Date : " + createdData;
     }
 
-    public void setCreatedDate(String createdDate) {
-        this.createdData = createdDate;
-    }
 }

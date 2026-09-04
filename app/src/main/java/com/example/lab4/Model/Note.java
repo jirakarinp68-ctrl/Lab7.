@@ -1,11 +1,13 @@
-package com.example.lab4;
+package com.example.lab4.Model;
+
+import java.util.Date;
 
 public class Note {
     private String title;
     private String content;
-    public String createdData;
+    public Date createdData;
     private User user;
-    private  String summary;
+    private  String Summary;
 
 
     //Method
@@ -15,15 +17,19 @@ public class Note {
     public  void setTitle (String title){
         this.title = title;
     }
-
     public void setContent(String content) {
         this.content = content;
     }
-
     public String getContent() {
         return content;
     }
-
+    public void setSummary(String summary){
+        this.Summary = summary;
+    }
+    public void setCreatedData(Date createdData) {
+        this.createdData = createdData;
+    }
+    public  Date getCreatedData(){return createdData;}
     public void setUser(User user) {
         this.user = user;
     }
@@ -36,10 +42,8 @@ public class Note {
                 + "\nContent : " + content
                 + "\nCreated Date : " + createdData;
     }
-    public void setSummary(String summary){
-        this.summary = summary;
-    }
-    public void setCreatedData(String createdData) {
-        this.createdData = createdData;
+
+    public String display() {
+        return "Title: " + title + ", Content: " + content;
     }
 }

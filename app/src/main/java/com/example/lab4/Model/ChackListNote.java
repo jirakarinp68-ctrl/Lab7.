@@ -1,6 +1,6 @@
-package com.example.lab4;
+package com.example.lab4.Model;
 
-public class ChackListNote extends Note{
+public class ChackListNote extends Note {
     public String item;
     public ChackListNote() {
 

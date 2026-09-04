@@ -1,4 +1,4 @@
-package com.example.lab4;
+package com.example.lab4.View;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +12,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.example.lab4.Controller.NoteController;
+import com.example.lab4.R;
 
 import java.util.Date;
 
@@ -55,19 +58,19 @@ public class AddNoteActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String strOfTitle = title.getText().toString();
                 String strOfContent = content.getText().toString();
-                String strOfData = new Date().toString();
                 String strOfUser = UserName.getText().toString();
+                Date date = new Date();
 
-                controller.addTextNote(
+                controller.saveNote(
                         strOfUser,
                         strOfTitle,
                         strOfContent,
-                        strOfData
+                        date,
+                        AddNoteActivity.this
                 );
 
                 textView.setText(controller.showNote());
-
-                }
-            });
+            }
+        });
         }
     }
