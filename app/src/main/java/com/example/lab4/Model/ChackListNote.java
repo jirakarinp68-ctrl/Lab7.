@@ -2,12 +2,12 @@ package com.example.lab4.Model;
 
 public class ChackListNote extends Note {
     public String item;
-    public ChackListNote() {
 
-    }
-    public String setItem() {
+    public void setItems() {
         this.item = item;
-        return "";
+    }
+    public String getItems() {
+        return item;
     }
 
     public String getSummary() {

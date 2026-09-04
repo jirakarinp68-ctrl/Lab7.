@@ -43,6 +43,7 @@ public class BrowNoteActivity extends AppCompatActivity {
         ShowNote = findViewById(R.id.textView5);
         LoadProsess = findViewById(R.id.progressBar2);
         InputSearch = findViewById(R.id.editTextSearch);
+        SearchButton = findViewById(R.id.button5);
 
         // load data from db
         Executors.newSingleThreadExecutor().execute(() -> {
@@ -57,11 +58,38 @@ public class BrowNoteActivity extends AppCompatActivity {
                 StringBuilder sb = new StringBuilder();
                 for (Note n : notes) {
                     if (n != null) {
-                        sb.append(n.display()).append("\n");
+                        sb.append(n.getSummary()).append("\n");
                     }
                 }
                 ShowNote.setText(sb.toString());
             });
+        });
+
+        SearchButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    System.out.println("click");
+                    //add
+                    LoadProsess.setVisibility(View.VISIBLE);
+                    //createThraed//
+                    new Thread(()->{
+                        //Load DB from DB//
+                        try {
+                            Thread.sleep(2000);
+                        } catch (InterruptedException e){
+                            throw new RuntimeException(e);
+                        }
+
+                        runOnUiThread(()->{
+                            //remove
+                            LoadProsess.setVisibility(View.GONE);
+                            // go to BrowActivityPage//
+                            Intent clickBrow = new Intent(getApplicationContext(), BrowNoteActivity.class);
+                            startActivity(clickBrow);
+                            finish();
+                        });
+                    }).start();
+            }
         });
     }
 }

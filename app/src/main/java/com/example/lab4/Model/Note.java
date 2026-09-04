@@ -44,6 +44,7 @@ public class Note {
     }
 
     public String display() {
-        return "Title: " + title + ", Content: " + content;
+        return "UserName"+ user + "Title: " + title + ", Content: " + content+ "Date"+createdData;
     }
+
 }

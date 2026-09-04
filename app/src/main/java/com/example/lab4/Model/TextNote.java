@@ -4,7 +4,6 @@ import java.util.Date;
 
 public class TextNote extends Note {
     public String content;
-
     public TextNote(String strOftitle, String strOfcontent, Date strOfdate) {
         super();
         setTitle(strOftitle);
@@ -21,7 +20,6 @@ public class TextNote extends Note {
     public void setCreatedDate(Date createdDate) {
         this.createdData = createdDate;
     }
-    //method
     public String getSummary() {
         return "User Name : " + getUser().getUserName()
                 + "\nTitle : " + getTitle()

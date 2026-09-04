@@ -5,7 +5,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.view.KeyEvent;
+import android.view.inputmethod.EditorInfo;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -44,6 +47,19 @@ public class AddNoteActivity extends AppCompatActivity {
         textView = findViewById(R.id.textView);
         Enter = findViewById(R.id.button3);
 
+        // Handle ENTER key on keyboard
+        content.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE || 
+                    (event != null && event.getKeyCode() == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_DOWN)) {
+                    performSaveAndNavigate();
+                    return true;
+                }
+                return false;
+            }
+        });
+
         Back.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -56,21 +72,34 @@ public class AddNoteActivity extends AppCompatActivity {
         Enter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String strOfTitle = title.getText().toString();
-                String strOfContent = content.getText().toString();
-                String strOfUser = UserName.getText().toString();
-                Date date = new Date();
-
-                controller.saveNote(
-                        strOfUser,
-                        strOfTitle,
-                        strOfContent,
-                        date,
-                        AddNoteActivity.this
-                );
-
-                textView.setText(controller.showNote());
+                performSaveAndNavigate();
             }
         });
-        }
     }
+
+    private void performSaveAndNavigate() {
+        String strOfTitle = title.getText().toString();
+        String strOfContent = content.getText().toString();
+        String strOfUser = UserName.getText().toString();
+        
+        if (strOfTitle.isEmpty() || strOfContent.isEmpty() || strOfUser.isEmpty()) {
+            Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        Date date = new Date();
+
+        controller.saveNote(
+                strOfUser,
+                strOfTitle,
+                strOfContent,
+                date,
+                AddNoteActivity.this
+        );
+
+        // Navigate to BrowNoteActivity
+        Intent intent = new Intent(AddNoteActivity.this, BrowNoteActivity.class);
+        startActivity(intent);
+        finish(); // Optional: close AddNoteActivity
+    }
+}
